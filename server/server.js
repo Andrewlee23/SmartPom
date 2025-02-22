@@ -12,7 +12,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 app.post('/api/get-time', async (req, res) => {
     const { task } = req.body;
     if (!task) {
-        return res.status(400).json({ error: 'Task description is required' });
+        return res.status(400).json({ error: 'task description is required' });
     }
 
     try {
