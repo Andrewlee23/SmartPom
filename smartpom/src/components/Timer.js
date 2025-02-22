@@ -6,9 +6,12 @@ import '../pages/Timerpage.css';
 const Timer = ({ initialTime, setPhaseComplete }) => {
     const [remainingTime, setTimeRemaining] = useState(initialTime * 60);
     const [isActive, setIsActive] = useState(false);
+    const [hasTriggeredPhaseComplete, setHasTriggeredPhaseComplete] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         setTimeRemaining(initialTime * 60);
+        setIsActive(false);
+        setHasTriggeredPhaseComplete(false);
     }, [initialTime]);
 
     useEffect(() => {
@@ -17,14 +20,17 @@ const Timer = ({ initialTime, setPhaseComplete }) => {
             setTimeRemaining((prev) => {
                 if (prev <= 1) {
                     clearInterval(timer);
-                    if (setPhaseComplete) setPhaseComplete(true);                                             
+                    if (!hasTriggeredPhaseComplete) {
+                        setHasTriggeredPhaseComplete(true); 
+                        setTimeout(() => setPhaseComplete(true), 500);
+                    }
                     return 0;
                 }
                 return prev - 1;
             });
         }, 1000);
         return () => clearInterval(timer);
-    }, [isActive]);
+    },[isActive, setPhaseComplete, hasTriggeredPhaseComplete]);
 
     return (
         <div>

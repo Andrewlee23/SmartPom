@@ -20,7 +20,7 @@ app.post('/api/get-time', async (req, res) => {
             'https://api.openai.com/v1/chat/completions',
             {
                 model: 'gpt-4o',
-                messages: [{ role: 'user', content: `How long does it take to ${task} for a slow working human? Give the time in minutes only.` }],
+                messages: [{ role: 'user', content: `How long does it take to ${task}? Give the time in minutes only.` }],
                 max_tokens: 50
             },
             {
@@ -33,8 +33,32 @@ app.post('/api/get-time', async (req, res) => {
         if (!estimatedTime) {
             return res.status(500).json({ error: 'failed to extract estimated time' });
         }
+        // 5/6th of the time is work
+        // 1/6th of the time is breaks
+        let totalMinutes = parseInt(estimatedTime[0], 10);
+        console.log('totalMinutes:', totalMinutes);
+        const workDuration = Math.floor((totalMinutes / 6) * 5); 
+        const breakDuration = Math.floor(totalMinutes / 6);
+        const shortBreak = Math.min(5, breakDuration / 5); 
+        const longBreak = Math.max(10, breakDuration);
 
-        res.json({ estimatedTime: parseInt(estimatedTime[0], 10) });
+        let pomodoroSchedule = [];
+
+        for (let i = 1; totalMinutes > 0; i++) {
+            let sessionTime = Math.min(25, workDuration); // work session capped at 25 min
+            pomodoroSchedule.push({ type: 'work', duration: sessionTime });
+            totalMinutes -= sessionTime;
+
+            if (i % 5 === 0) {
+                pomodoroSchedule.push({ type: 'long_break', duration: longBreak });
+            } else if (totalMinutes > 0) {
+                let break1 = Math.max(3, shortBreak) // break min is 3 minutes
+                pomodoroSchedule.push({ type: 'short_break', duration: break1 });
+            }
+        }
+
+        console.log(pomodoroSchedule);
+        res.json({ estimatedTime: totalMinutes, pomodoroSchedule });
     } catch (error) {
         console.error('Error:', error?.response?.data || error.message);
         res.status(500).json({ error: 'error fetching estimated time' });

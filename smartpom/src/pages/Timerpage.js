@@ -13,13 +13,15 @@ const TimerPage = ({ pomodoroSchedule = [] }) => {
     };
     useEffect(() => {
         if (phaseComplete) {
+            console.log('Phase completed:', pomodoroSchedule[currentPhaseIndex].type);
+            setPhaseComplete(false);
             if (currentPhaseIndex < pomodoroSchedule.length - 1) {
                 setCurrentPhaseIndex((prev) => prev + 1);
             } else {
                 alert("cycle completed!");
                 navigate('/');
             }
-            setPhaseComplete(false); 
+            
         }
     }, [phaseComplete, currentPhaseIndex, pomodoroSchedule, navigate]);
 
@@ -29,7 +31,10 @@ const TimerPage = ({ pomodoroSchedule = [] }) => {
             {pomodoroSchedule.length > 0 ? (
                 <div>
                     <h2>{pomodoroSchedule[currentPhaseIndex].type.replace('_', ' ').toUpperCase()}</h2>
-                    <Timer initialTime={pomodoroSchedule[currentPhaseIndex].duration} onTimeUp={handlePhaseComplete} />
+                    <Timer
+                        initialTime={pomodoroSchedule[currentPhaseIndex].duration}
+                        setPhaseComplete={handlePhaseComplete}  
+                    />
                 </div>
             ) : (
                 <p>Loading...</p>
