@@ -9,6 +9,7 @@ class Homepage extends React.Component {
                 <h1 className="title">SmartPom</h1>
                 <label className="boxLabel">What Are We Working On Today?</label>
                 <input className="promptBox" type="text" placeholder="Input Prompt"></input>
+                <button>Start!</button>
             </div>
         )
     }
