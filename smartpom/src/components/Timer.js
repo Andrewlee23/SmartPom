@@ -26,15 +26,7 @@ const Timer = ({initialTime, onTimeUp}) => {
         return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
 
-    return (
-        <div>
-            <><h2>Time Remaining: {formatTime(remainingTime)}</h2><button onClick={() => setIsActive(!isRunning)}>
-            {isRunning ? 'Pause' : 'Start'}
-        </button><button onClick={() => setTimeRemaining(initialTime * 60)}>
-                Reset
-            </button></>
-        </div>
-    );
+
 }
 
 export default Timer; 
