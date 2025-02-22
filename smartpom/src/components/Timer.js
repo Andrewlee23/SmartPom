@@ -18,7 +18,7 @@ const Timer = ({initialTime, onTimeUp}) => {
             });
         }, 1000);
         return () => clearInterval(timer); 
-    }, [isRunning]);
+    }, [IsActive]);
 
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
@@ -30,8 +30,8 @@ const Timer = ({initialTime, onTimeUp}) => {
         <div>
             <h2>Timer</h2>
             <p>{formatTime(remainingTime)}</p>
-            <button onClick={() => setIsActive(!isRunning)}>
-                {isRunning ? 'Pause' : 'Start'}
+            <button onClick={() => setIsActive(!IsActive)}>
+                {IsActive ? 'Pause' : 'Start'}
             </button>
             <button onClick={() => setTimeRemaining(initialTime * 60)}>
                 Reset
