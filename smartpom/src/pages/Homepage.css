@@ -1,0 +1,44 @@
+body {
+    background-color: #C06C84;
+}
+
+.title {
+    text-align: center;
+    color: #F8B195  
+}
+
+label {
+    display: block;
+    text-align:center;
+    color:aliceblue;
+    font-size: 24px;
+    padding:2%;
+}
+
+.promptBox {
+    display: block;
+    margin: auto;
+    width: 50%;
+    box-sizing: border-box;
+
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('https://img.icons8.com/?size=32&id=7695&format=png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+
+button {
+    display:block;
+    margin:auto;
+}
+/* 
+#F8B195
+#F67280
+#C06C84
+#6C5B7B
+#355C7D
+*/
