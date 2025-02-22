@@ -19,7 +19,7 @@ const Homepage = ({ setPomodoroSchedule }) => {
             });
 
             const data = await response.json();
-
+            console.log('Pomodoro schedule:', data.pomodoroSchedule);
             if (data.pomodoroSchedule && data.pomodoroSchedule.length > 0) {  
                 setPomodoroSchedule(data.pomodoroSchedule);
                 console.log('Pomodoro schedule:', data.pomodoroSchedule);
