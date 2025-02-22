@@ -4,10 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import Timer from '../components/Timer';
 import './Timerpage.css';
 
-const TimerPage = ({ pomodoroSchedule }) => {
+const TimerPage = ({ pomodoroSchedule = [] }) => { 
     const navigate = useNavigate();
     const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
 
+    useEffect(() => {
+        if (!pomodoroSchedule || pomodoroSchedule.length === 0) {
+            alert("error: No schedule found. Returning to home.");
+            navigate('/');
+        }
+    }, [pomodoroSchedule, navigate]);
     const handlePhaseComplete = () => {
         if (currentPhaseIndex < pomodoroSchedule.length - 1) {
             setCurrentPhaseIndex((prev) => prev + 1);
@@ -16,7 +22,6 @@ const TimerPage = ({ pomodoroSchedule }) => {
             navigate('/');
         }
     };
-
     return (
         <div className="timer-page">
             <h1 className="timer-header">SmartPom</h1>
