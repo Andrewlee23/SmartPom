@@ -1,10 +1,14 @@
+
+
 body {
     background-color: #C06C84;
 }
 
 .title {
     text-align: center;
+    font-family: "Pixelify Sans", sans-serif;
     color: #F8B195  
+    
 }
 
 label {
@@ -13,6 +17,7 @@ label {
     color:aliceblue;
     font-size: 24px;
     padding:2%;
+    font-family: "Pixelify Sans", sans-serif;
 }
 
 .promptBox {
@@ -20,7 +25,7 @@ label {
     margin: auto;
     width: 50%;
     box-sizing: border-box;
-
+    font-family: "Pixelify Sans", sans-serif;
     border: 2px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
@@ -32,6 +37,7 @@ label {
 }
 
 button {
+    font-family: "Pixelify Sans", sans-serif;
     display:block;
     margin:auto;
 }
