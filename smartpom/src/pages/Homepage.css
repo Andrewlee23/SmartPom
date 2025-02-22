@@ -26,6 +26,7 @@ label {
     background-color: white;
     background-image: url('https://img.icons8.com/?size=32&id=7695&format=png');
     background-position: 10px 10px; 
+    background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
 }
 /* 
