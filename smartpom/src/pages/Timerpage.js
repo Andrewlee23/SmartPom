@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Timer from '../components/Timer';
+import "./Timerpage.css";
+
 
 const TimerPage = ({ estimatedTime }) => {
     const navigate = useNavigate();

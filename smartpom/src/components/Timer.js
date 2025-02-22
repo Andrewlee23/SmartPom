@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import '../pages/Timerpage.css';
 const Timer = ({initialTime, onTimeUp}) => {
     const [remainingTime, setTimeRemaining] = useState(initialTime * 60);
     const [IsActive, setIsActive] = useState(false);
@@ -25,19 +25,19 @@ const Timer = ({initialTime, onTimeUp}) => {
         const remainingSeconds = seconds % 60;
         return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
-
     return (
         <div>
-            <h2>Timer</h2>
-            <p>{formatTime(remainingTime)}</p>
-            <button onClick={() => setIsActive(!IsActive)}>
-                {IsActive ? 'Pause' : 'Start'}
-            </button>
-            <button onClick={() => setTimeRemaining(initialTime * 60)}>
-                Reset
-            </button>
+            <h1 className="timer-display">{formatTime(remainingTime)}</h1>
+            <div className="button-container">
+                <button className="timer-button pause-button" onClick={() => setIsActive(!IsActive)}>
+                    {IsActive ? "Resume" : "Pause"}
+                </button>
+                <button className="timer-button reset-button" onClick={() => setTimeRemaining(initialTime * 60)}>
+                    Reset
+                </button>
+            </div>
         </div>
     );
-}
+};
 
-export default Timer; 
+export default Timer;
