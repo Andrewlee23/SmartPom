@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import "./Homepage.css";
 
 const Homepage = ({ setEstimatedTime }) => {
-    const [task] = useState('');
+    const [task, setTask] = useState('');
     const navigate = useNavigate();
     
     const handleSubmit = async () => {
@@ -31,8 +31,14 @@ const Homepage = ({ setEstimatedTime }) => {
             <div>
                 <h1 className="title">SmartPom</h1>
                 <label className="boxLabel">What Are We Working On Today?</label>
-                <input className="promptBox" type="text" placeholder="Input Prompt"></input>
-                <button>Start!</button>
+                <input
+                className="promptBox"
+                type="text"
+                placeholder="Input Prompt"
+                value={task}
+                onChange={(e) => setTask(e.target.value)}
+            />
+                <button onClick={handleSubmit}>Start</button>
             </div>
         
     );
