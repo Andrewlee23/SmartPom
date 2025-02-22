@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../pages/Timerpage.css';
 
-const Timer = ({ initialTime, onTimeUp }) => {
+const Timer = ({ initialTime, setPhaseComplete }) => {
     const [remainingTime, setTimeRemaining] = useState(initialTime * 60);
     const [isActive, setIsActive] = useState(false);
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Timer = ({ initialTime, onTimeUp }) => {
             setTimeRemaining((prev) => {
                 if (prev <= 1) {
                     clearInterval(timer);
-                    if (onTimeUp) onTimeUp();
+                    if (setPhaseComplete) setPhaseComplete(true);                                             
                     return 0;
                 }
                 return prev - 1;
@@ -33,6 +33,9 @@ const Timer = ({ initialTime, onTimeUp }) => {
                 {isActive ? "Pause" : "Start"}
             </button>
             <button className="go-back-button" onClick={() => navigate('/')}>Go Back</button>
+            <button className="timer-button reset-button" onClick={() => setTimeRemaining(initialTime * 60)}>
+                    Reset
+                </button>
         </div>
     );
 };

@@ -7,21 +7,22 @@ import './Timerpage.css';
 const TimerPage = ({ pomodoroSchedule = [] }) => { 
     const navigate = useNavigate();
     const [currentPhaseIndex, setCurrentPhaseIndex] = useState(0);
-
-    useEffect(() => {
-        if (!pomodoroSchedule || pomodoroSchedule.length === 0) {
-            alert("error: No schedule found. Returning to home.");
-            navigate('/');
-        }
-    }, [pomodoroSchedule, navigate]);
+    const [phaseComplete, setPhaseComplete] = useState(false);
     const handlePhaseComplete = () => {
-        if (currentPhaseIndex < pomodoroSchedule.length - 1) {
-            setCurrentPhaseIndex((prev) => prev + 1);
-        } else {
-            alert("Pomodoro cycle completed!");
-            navigate('/');
-        }
+        setPhaseComplete(true);
     };
+    useEffect(() => {
+        if (phaseComplete) {
+            if (currentPhaseIndex < pomodoroSchedule.length - 1) {
+                setCurrentPhaseIndex((prev) => prev + 1);
+            } else {
+                alert("cycle completed!");
+                navigate('/');
+            }
+            setPhaseComplete(false); 
+        }
+    }, [phaseComplete, currentPhaseIndex, pomodoroSchedule, navigate]);
+
     return (
         <div className="timer-page">
             <h1 className="timer-header">SmartPom</h1>
@@ -33,7 +34,7 @@ const TimerPage = ({ pomodoroSchedule = [] }) => {
             ) : (
                 <p>Loading...</p>
             )}
-            <button className="go-back-button" onClick={() => navigate('/')}>Go Back</button>
+            
         </div>
     );
 };
