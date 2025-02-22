@@ -20,14 +20,15 @@ app.post('/api/get-time', async (req, res) => {
             'https://api.openai.com/v1/chat/completions',
             {
                 model: 'gpt-4o',
-                messages: [{ role: 'user', content: `How long does it take to ${task}? Give the time in minutes only.` }],
+                messages: [{ role: 'user', content: `How long does it take to ${task} for a slow working human? Give the time in minutes only.` }],
                 max_tokens: 50
             },
             {
                 headers: { Authorization: `Bearer ${OPENAI_API_KEY}` }
             }
         );
-
+        console.log('response:', response.data);
+      
         const estimatedTime = response.data.choices[0].message.content.match(/\d+/);
         if (!estimatedTime) {
             return res.status(500).json({ error: 'failed to extract estimated time' });
