@@ -1,8 +1,9 @@
-Run server
+# Run server
 node server.js
 
-Run app 
+# Run app 
 cd smartpom
+
 npm start
 
-Remember to add OpenAI key to .env file in /server
+# Remember to add OpenAI key to .env file in /server
