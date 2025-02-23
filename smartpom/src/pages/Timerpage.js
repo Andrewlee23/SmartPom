@@ -30,7 +30,8 @@ const TimerPage = ({ pomodoroSchedule = [] }) => {
             <h1 className="timer-header">SmartPom</h1>
             {pomodoroSchedule.length > 0 ? (
                 <div>
-                    <h1>{pomodoroSchedule[currentPhaseIndex].type.replace('_', ' ').toUpperCase()}</h1>
+                    <h1 className="timer-status">{pomodoroSchedule[currentPhaseIndex].type.replace('_', ' ').toUpperCase()}</h1>
+
                     <Timer
                         initialTime={pomodoroSchedule[currentPhaseIndex].duration}
                         setPhaseComplete={handlePhaseComplete}  
