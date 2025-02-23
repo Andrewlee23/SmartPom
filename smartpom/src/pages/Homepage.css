@@ -11,12 +11,13 @@ ul {
 
 li {
     display: inline;
+    margin: 2%;
 }
 
 li a {
     display: inline;
-    padding: 10px;
-    padding-right: 20px;
+    /* padding: 10px;
+    padding-right: 20px; */
     color: #F8B195;
     font-size: 50px;
     text-shadow: 1px 1px 2px black;
@@ -47,7 +48,7 @@ label {
     border: 4px solid black;
     border-radius: 10px;
     font-size: 25px;
-    background-color: #756781;
+    background-color: #8D627E;
     padding: 12px 20px 12px 40px;
 }
 
@@ -58,7 +59,17 @@ input::placeholder {
 
 button {
     display:block;
-    margin:auto;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: "Pixelify Sans", sans-serif;
+    color: #F8B195;
+    background-color: #6C5B7B;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid black;
+    border-radius: 30px;
+    padding: 20px 50px 20px 50px;
 }
 /* 
 #F8B195

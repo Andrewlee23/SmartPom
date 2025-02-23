@@ -48,7 +48,7 @@ const Homepage = ({ setPomodoroSchedule }) => {
                 value={task}
                 onChange={(e) => setTask(e.target.value)}
             />
-                <button onClick={handleSubmit}>Start</button>
+                <button onClick={handleSubmit}>Start!</button>
             </div>
         
     );
