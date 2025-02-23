@@ -53,7 +53,7 @@ app.post('/api/get-time', async (req, res) => {
         const shortBreak = Math.min(5, breakDuration / 2); 
         const longBreak = Math.max(10, breakDuration);
         const maxWorkSession = 35;  // maximum duration of a single work session 
-        const minWorkSession = 20; // minimum duration of a single work session 
+        const minWorkSession = 15; // minimum duration of a single work session 
 
         let pomodoroSchedule = [];
         let remainingMinutes = totalMinutes;
