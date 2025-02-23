@@ -35,16 +35,20 @@ const Homepage = ({ setPomodoroSchedule }) => {
     };
     return(
             <div>
+                 <ul>
+                    <li><a href="default.asp">Home</a></li>
+                    <li><a href="about.asp">About</a></li>
+                </ul> 
                 <h1 className="title">SmartPom</h1>
                 <label className="boxLabel">What Are We Working On Today?</label>
                 <input
                 className="promptBox"
                 type="text"
-                placeholder="Input Prompt"
+                placeholder="Ex: Write a blog post"
                 value={task}
                 onChange={(e) => setTask(e.target.value)}
             />
-                <button onClick={handleSubmit}>Start</button>
+                <button onClick={handleSubmit}>Start!</button>
             </div>
         
     );
