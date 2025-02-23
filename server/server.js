@@ -20,7 +20,17 @@ app.post('/api/get-time', async (req, res) => {
             'https://api.openai.com/v1/chat/completions',
             {
                 model: 'gpt-4o',
-                messages: [{ role: 'user', content: `How long does it take to ${task}? Give the time in minutes only.` }],
+                messages: [
+                    { role: 'system', content: "You are an expert at estimating task durations." },
+                    {
+                        role: 'user',
+                        content: `Estimate how long it would take for an average person to complete the following task: "${task}". 
+                        Provide your answer in minutes, and ensure the time is realistic based on common productivity levels.
+                        If the task is complex, assume the user is focused and working efficiently.
+                        Ensure your answer is a reasonable estimate and between 5 minutes to 300 minutes (5 hours max). 
+                        Do NOT return anything except the estimated time in minutes as a number.`
+                    }
+                ],
                 max_tokens: 50
             },
             {
@@ -37,21 +47,28 @@ app.post('/api/get-time', async (req, res) => {
         // 1/6th of the time is breaks
         let totalMinutes = parseInt(estimatedTime[0], 10);
         console.log('totalMinutes:', totalMinutes);
-        const workDuration = Math.floor((totalMinutes / 6) * 5); 
+        totalMinutes = Math.max(5, Math.min(totalMinutes, 300));
+         
         const breakDuration = Math.floor(totalMinutes / 6);
-        const shortBreak = Math.min(5, breakDuration / 5); 
+        const shortBreak = Math.min(5, breakDuration / 2); 
         const longBreak = Math.max(10, breakDuration);
+        const maxWorkSession = 35;  // maximum duration of a single work session 
+        const minWorkSession = 20; // minimum duration of a single work session 
 
         let pomodoroSchedule = [];
+        let remainingMinutes = totalMinutes;
+        while (remainingMinutes > 0) {
+            let workDuration = Math.min(remainingMinutes, maxWorkSession);
+            workDuration = Math.max(workDuration, minWorkSession);
 
-        for (let i = 1; totalMinutes > 0; i++) {
-            let sessionTime = Math.min(25, workDuration); // work session capped at 25 min
-            pomodoroSchedule.push({ type: 'work', duration: sessionTime });
-            totalMinutes -= sessionTime;
+            pomodoroSchedule.push({ type: 'work', duration: workDuration });
+            remainingMinutes -= workDuration;
 
-            if (i % 5 === 0) {
+            if (remainingMinutes <= 0) break;
+
+            if (pomodoroSchedule.length % 4 === 0) {
                 pomodoroSchedule.push({ type: 'long_break', duration: longBreak });
-            } else if (totalMinutes > 0) {
+            } else {
                 let break1 = Math.max(3, shortBreak) // break min is 3 minutes
                 pomodoroSchedule.push({ type: 'short_break', duration: break1 });
             }
