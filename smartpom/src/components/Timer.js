@@ -36,13 +36,19 @@ const Timer = ({ initialTime, setPhaseComplete }) => {
         <div>
             
             <h1 className="timer-display">{`${Math.floor(remainingTime / 60)}:${remainingTime % 60 < 10 ? '0' : ''}${remainingTime % 60}`}</h1>
-            <button className="timer-button" onClick={() => setIsActive(!isActive)}>
-                {isActive ? "Pause" : "Start"}
-            </button>
-            <button className="timer-button go-back-button" onClick={() => navigate('/SmartPom')}>Go Back</button>
+            <div className="twobuttons">
+                <button className="timer-button" onClick={() => setIsActive(!isActive)}>
+                    {isActive ? "Pause" : "Start"}
+                </button>
             <button className="timer-button reset-button" onClick={() => setTimeRemaining(initialTime * 60)}>
                     Reset
                 </button>
+            </div>
+            <div>
+                <button className="timer-button go-back-button" onClick={() => navigate('/SmartPom')}>Go Back</button>
+            </div>
+            
+           
         </div>
     );
 };
