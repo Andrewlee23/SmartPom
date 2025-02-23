@@ -36,8 +36,8 @@ const Homepage = ({ setPomodoroSchedule }) => {
     return(
             <div>
                  <ul>
-                    <li><a href="default.asp">Home</a></li>
-                    <li><a href="about.asp">About</a></li>
+                    <li><a onClick={() => navigate('/')}>Home</a></li>
+                    <li><a onClick={() => navigate('/about')}>About</a></li>
                 </ul> 
                 <h1 className="title">SmartPom</h1>
                 <label className="boxLabel">What Are We Working On Today?</label>
