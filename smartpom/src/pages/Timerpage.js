@@ -19,7 +19,7 @@ const TimerPage = ({ pomodoroSchedule = [] }) => {
                 setCurrentPhaseIndex((prev) => prev + 1);
             } else {
                 alert("cycle completed!");
-                navigate('/');
+                navigate('/SmartPom');
             }
             
         }

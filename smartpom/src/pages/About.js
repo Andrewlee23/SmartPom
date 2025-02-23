@@ -21,7 +21,7 @@ const About = ({}) => {
         
             <div>
                 <ul>
-                 <li><a onClick={() => navigate('/')}>Home</a></li>
+                 <li><a onClick={() => navigate('/SmartPom')}>Home</a></li>
                  <li><a onClick={() => navigate('/about')}>About</a></li>
                 </ul> 
                 <h1 className="title">What Is SmartPom</h1>

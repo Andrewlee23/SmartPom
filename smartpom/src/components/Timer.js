@@ -39,7 +39,7 @@ const Timer = ({ initialTime, setPhaseComplete }) => {
             <button className="timer-button" onClick={() => setIsActive(!isActive)}>
                 {isActive ? "Pause" : "Start"}
             </button>
-            <button className="timer-button go-back-button" onClick={() => navigate('/')}>Go Back</button>
+            <button className="timer-button go-back-button" onClick={() => navigate('/SmartPom')}>Go Back</button>
             <button className="timer-button reset-button" onClick={() => setTimeRemaining(initialTime * 60)}>
                     Reset
                 </button>

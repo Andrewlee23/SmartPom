@@ -10,7 +10,7 @@ const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<HomePage setPomodoroSchedule={setPomodoroSchedule} />} /> 
+                <Route path="/SmartPom" element={<HomePage setPomodoroSchedule={setPomodoroSchedule} />} /> 
                 <Route path="/timer" element={<TimerPage pomodoroSchedule={pomodoroSchedule} />} />
                 <Route path="/about" element={<AboutPage />}/>
             </Routes>
